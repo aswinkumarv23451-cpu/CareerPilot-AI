@@ -7,6 +7,7 @@ from app.api.candidates import router as candidates_router
 from app.api.agent import router as agent_router
 from app.models import conversation
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
 Base.metadata.create_all(bind=engine)
 
@@ -15,11 +16,17 @@ app=FastAPI(
     description='AI-powered job matching and career assistant',
     version='1.0.0'
 )
+frontend_url = os.getenv(
+    "FRONTEND_URL",
+    "http://127.0.0.1:5500"
+)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://127.0.0.1:5500",
-        "http://localhost:5500"
+        "http://localhost:5500",
+        frontend_url
     ],
     allow_credentials=True,
     allow_methods=["*"],
