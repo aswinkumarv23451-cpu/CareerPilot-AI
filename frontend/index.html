@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CareerPilot AI - Discover internships matched to your skills with AI-powered recommendations.">
+    <title>CareerPilot AI | Discover Your Next Opportunity</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.3.1/dist/purify.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+
+        <a href="#home" class="brand">
+            <span class="brand-icon">CP</span>
+            <span>CareerPilot<span class="brand-ai"> AI</span></span>
+        </a>
+
+        <div class="global-search">
+            <span>⌕</span>
+            <input type="search" id="global-search"
+                   placeholder="Search jobs, skills or companies">
+        </div>
+
+        <nav class="top-navigation">
+                    <a href="index.html" class="top-nav-link">⌂ <span>Home</span></a>
+                    <a href="jobs.html" class="top-nav-link">▤ <span>Jobs</span></a>
+                    <a href="saved.html" class="top-nav-link">☆ <span>Saved</span></a>
+                    <a href="applications.html" class="top-nav-link">▣ <span>Applications</span></a>
+                    <a href="assistant.html" class="top-nav-link">✧ <span>AI Assistant</span></a>
+                    <a href="profile.html" class="top-nav-link">◉ <span>Profile</span></a>
+        </nav>
+
+        <div class="connection-indicator">
+            <span class="status-dot"></span>
+            <small id="connection-status">Checking...</small>
+        </div>
+
+    </div>
+</header>
+
+<main class="page-layout" id="home">
+
+    <!-- LEFT COLUMN -->
+    <aside class="left-column">
+
+        <section class="card profile-card" id="profile">
+
+            <div class="profile-cover"></div>
+
+            <div class="profile-avatar" id="profile-avatar">A</div>
+
+            <div class="profile-intro">
+                <h2 id="profile-name">Candidate</h2>
+                <p id="profile-education">AI & Data Science Student</p>
+                <span class="profile-location" id="profile-location">
+                    Location not available
+                </span>
+            </div>
+
+            <div class="profile-divider"></div>
+
+            <div class="profile-stat">
+                <span>Candidate status</span>
+                <strong id="candidate-status">Loading</strong>
+            </div>
+
+            <div class="profile-stat">
+                <span>Opportunities found</span>
+                <strong id="total-jobs">--</strong>
+            </div>
+
+            <button class="outline-button full-button" id="load-profile">
+                Refresh Profile
+            </button>
+
+        </section>
+
+        <section class="card skills-card">
+            <div class="card-heading">
+                <h3>Your Skills</h3>
+                <span class="small-icon">✧</span>
+            </div>
+
+            <div id="profile-details" class="profile-details">
+                <p class="muted">Loading your profile...</p>
+            </div>
+        </section>
+
+        <section class="card quick-links">
+            <h3>Explore Opportunities</h3>
+            <a href="https://www.linkedin.com/jobs/" target="_blank"
+               rel="noopener noreferrer">↗ LinkedIn Jobs</a>
+            <a href="https://internshala.com/internships/" target="_blank"
+               rel="noopener noreferrer">↗ Internshala Internships</a>
+        </section>
+
+    </aside>
+
+    <!-- CENTRE COLUMN -->
+    <section class="centre-column">
+
+        <section class="welcome-card">
+            <div>
+                <span class="eyebrow">YOUR AI-POWERED CAREER PLATFORM</span>
+                <h1>Find opportunities that match your potential.</h1>
+                <p>Discover internships, understand your strengths and take the next step in your career.</p>
+            </div>
+            <div class="welcome-symbol">✦</div>
+        </section>
+
+        <section class="card search-card" id="jobs">
+
+            <div class="section-title">
+                <div>
+                    <span class="eyebrow">OPPORTUNITY DISCOVERY</span>
+                    <h2>Find your next internship</h2>
+                </div>
+                <span class="ai-label">✧ AI MATCHING</span>
+            </div>
+
+            <form id="job-search-form" class="job-search-form">
+
+                <div class="search-field">
+                    <label for="job-keyword">Role or skill</label>
+                    <input id="job-keyword" type="search"
+                           placeholder="Python, Data Analyst, AI...">
+                </div>
+
+                <div class="search-field">
+                    <label for="job-location">Location</label>
+                    <input id="job-location" type="text"
+                           placeholder="Remote, Bengaluru...">
+                </div>
+
+                <button type="submit" class="primary-button">
+                    Search Jobs
+                </button>
+
+            </form>
+
+            <div class="filter-row">
+                <button class="filter-chip active" data-filter="all">All Jobs</button>
+                <button class="filter-chip" data-filter="remote">Remote</button>
+                <button class="filter-chip" data-filter="internship">Internships</button>
+                <button class="filter-chip" data-filter="ai">AI / ML</button>
+                <button class="filter-chip" data-filter="backend">Backend</button>
+            </div>
+
+        </section>
+
+        <section class="feed-section">
+
+            <div class="feed-heading">
+                <div>
+                    <span class="eyebrow">PERSONALIZED FOR YOU</span>
+                    <h2>Recommended opportunities</h2>
+                </div>
+
+                <button class="text-button" id="load-jobs">
+                    Refresh ↻
+                </button>
+            </div>
+
+            <div class="feed-summary">
+                <span id="feed-count">Discover opportunities matched to your profile</span>
+                <span class="sort-label">Sorted by AI match</span>
+            </div>
+
+            <div id="jobs-list" class="jobs-list">
+                <article class="card empty-state">
+                    <div class="empty-symbol">✧</div>
+                    <h3>Your next opportunity awaits</h3>
+                    <p>Load recommendations to discover relevant internships.</p>
+                </article>
+            </div>
+
+        </section>
+
+        <section class="card tracking-card">
+            <div>
+                <span class="eyebrow">YOUR CAREER JOURNEY</span>
+                <h2>Application Tracker</h2>
+                <p>Keep track of opportunities you plan to apply for.</p>
+            </div>
+            <span class="coming-soon">Coming next</span>
+        </section>
+
+    </section>
+
+    <!-- RIGHT COLUMN -->
+    <aside class="right-column">
+
+        <section class="card match-card">
+            <span class="eyebrow">YOUR BEST OPPORTUNITY</span>
+            <h3>Top match score</h3>
+
+            <div class="match-score" id="top-match">--</div>
+
+            <p>Highest-ranked opportunity based on your current profile.</p>
+        </section>
+
+        <section class="card insights-card">
+            <div class="card-heading">
+                <h3>Career Insights</h3>
+                <span class="ai-label">AI</span>
+            </div>
+
+            <div class="insight-item">
+                <span class="insight-icon">⌕</span>
+                <div>
+                    <strong>Skill gap analysis</strong>
+                    <p>Understand which skills to improve.</p>
+                </div>
+            </div>
+
+            <div class="insight-item">
+                <span class="insight-icon">↗</span>
+                <div>
+                    <strong>Career recommendations</strong>
+                    <p>Explore suitable career paths.</p>
+                </div>
+            </div>
+
+            <a href="#assistant" class="outline-button full-button">
+                Ask CareerPilot AI
+            </a>
+        </section>
+
+        <section class="card source-card">
+            <h3>Job Search Sources</h3>
+            <p>Explore external opportunities alongside AI recommendations.</p>
+
+            <a href="https://www.linkedin.com/jobs/" target="_blank"
+               rel="noopener noreferrer">LinkedIn ↗</a>
+
+            <a href="https://internshala.com/internships/" target="_blank"
+               rel="noopener noreferrer">Internshala ↗</a>
+        </section>
+
+    </aside>
+
+</main>
+
+<!-- AI ASSISTANT -->
+<section class="assistant-section" id="assistant">
+
+    <div class="assistant-container">
+
+        <div class="assistant-heading">
+            <div>
+                <span class="eyebrow">YOUR PERSONAL CAREER GUIDE</span>
+                <h2>CareerPilot AI Assistant</h2>
+                <p>Ask questions about your profile, internships, skills and career goals.</p>
+            </div>
+            <span class="ai-label">✧ POWERED BY GEMINI</span>
+        </div>
+
+        <div class="card chat-panel">
+
+            <div class="chat-messages" id="chat-messages">
+                <div class="assistant-message">
+                    <strong>CareerPilot AI</strong>
+                    <p>Hello! I can help you discover internships, understand skill gaps and plan your career. What would you like to explore?</p>
+                </div>
+            </div>
+
+            <form id="chat-form" class="chat-form">
+                <input type="text" id="chat-input"
+                       placeholder="Ask about internships, skills or your career..."
+                       maxlength="2000" required>
+                <button type="submit" class="primary-button">Send ↗</button>
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+    <p>CareerPilot AI © 2026 · Discover opportunities. Build your future.</p>
+</footer>
+
+</body>
+</html>

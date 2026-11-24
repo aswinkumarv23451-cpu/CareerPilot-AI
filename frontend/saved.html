@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Jobs | CareerPilot AI</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+
+        <a href="index.html" class="brand">
+            <span class="brand-icon">CP</span>
+            <span>CareerPilot<span class="brand-ai"> AI</span></span>
+        </a>
+
+        <div class="global-search">
+            <span>⌕</span>
+            <input type="search" id="global-search"
+                   placeholder="Search jobs, skills or companies">
+        </div>
+
+        <nav class="top-navigation">
+                    <a href="index.html" class="top-nav-link">⌂ <span>Home</span></a>
+                    <a href="jobs.html" class="top-nav-link">▤ <span>Jobs</span></a>
+                    <a href="saved.html" class="top-nav-link">☆ <span>Saved</span></a>
+                    <a href="applications.html" class="top-nav-link">▣ <span>Applications</span></a>
+                    <a href="assistant.html" class="top-nav-link">✧ <span>AI Assistant</span></a>
+                    <a href="profile.html" class="top-nav-link">◉ <span>Profile</span></a>
+        </nav>
+
+        <div class="connection-indicator">
+            <span class="status-dot"></span>
+            <small id="connection-status">Checking...</small>
+        </div>
+
+    </div>
+</header>
+
+<main class="saved-page">
+
+    <section class="saved-heading">
+        <span class="eyebrow">YOUR PERSONAL COLLECTION</span>
+        <h1>Saved opportunities</h1>
+        <p>Keep track of internships you want to explore later.</p>
+    </section>
+
+    <section class="saved-summary card">
+        <div>
+            <span class="saved-summary-label">BOOKMARKED JOBS</span>
+            <h2 id="saved-count">0</h2>
+            <p>Opportunities saved for later</p>
+        </div>
+        <span class="saved-icon">☆</span>
+    </section>
+
+    <section class="saved-content">
+
+        <div class="saved-list-header">
+            <h2>Your saved jobs</h2>
+            <a href="jobs.html" class="secondary-button">
+                Explore jobs →
+            </a>
+        </div>
+
+        <div id="saved-jobs-list">
+            <div class="card saved-empty">
+                <div class="saved-empty-icon">☆</div>
+                <h3>No saved jobs yet</h3>
+                <p>
+                    When you find an interesting opportunity,
+                    save it here to revisit later.
+                </p>
+                <a href="jobs.html" class="primary-button">
+                    Discover opportunities
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p>CareerPilot AI © 2026 · Discover opportunities. Build your future.</p>
+</footer>
+
+</body>
+</html>

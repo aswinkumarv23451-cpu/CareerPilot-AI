@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Assistant | CareerPilot AI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.3.1/dist/purify.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+
+        <a href="index.html" class="brand">
+            <span class="brand-icon">CP</span>
+            <span>CareerPilot<span class="brand-ai"> AI</span></span>
+        </a>
+
+        <div class="global-search">
+            <span>⌕</span>
+            <input type="search" id="global-search"
+                   placeholder="Search jobs, skills or companies">
+        </div>
+
+        <nav class="top-navigation">
+            <a href="index.html" class="top-nav-link">⌂ <span>Home</span></a>
+            <a href="jobs.html" class="top-nav-link">▤ <span>Jobs</span></a>
+            <a href="saved.html" class="top-nav-link">☆ <span>Saved</span></a>
+            <a href="applications.html" class="top-nav-link">▣ <span>Applications</span></a>
+            <a href="assistant.html" class="top-nav-link">✧ <span>AI Assistant</span></a>
+            <a href="profile.html" class="top-nav-link">◉ <span>Profile</span></a>
+        </nav>
+
+        <div class="connection-indicator">
+            <span class="status-dot"></span>
+            <small id="connection-status">Checking...</small>
+        </div>
+
+    </div>
+</header>
+
+<main class="assistant-page">
+
+    <section class="assistant-page-heading">
+        <span class="eyebrow">YOUR PERSONAL CAREER GUIDE</span>
+        <h1>Meet your AI career assistant.</h1>
+        <p>Get personalized career guidance powered by Gemini and your candidate profile.</p>
+        <span class="ai-label">✧ GEMINI AI</span>
+    </section>
+
+    <section class="assistant-workspace">
+
+        <aside class="card assistant-sidebar">
+            <h3>What can I help with?</h3>
+
+            <div class="assistant-topic">
+                <strong>Career guidance</strong>
+                <p>Explore suitable career paths and roles.</p>
+            </div>
+
+            <div class="assistant-topic">
+                <strong>Internship discovery</strong>
+                <p>Find opportunities that match your skills.</p>
+            </div>
+
+            <div class="assistant-topic">
+                <strong>Skill gap analysis</strong>
+                <p>Identify skills to improve for your target role.</p>
+            </div>
+
+            <div class="assistant-topic">
+                <strong>Interview preparation</strong>
+                <p>Practice technical and HR interview questions.</p>
+            </div>
+        </aside>
+
+        <section class="card chat-panel">
+
+            <div class="chat-header">
+                <div>
+                    <strong>CareerPilot AI</strong>
+                    <p>Your intelligent career companion</p>
+                </div>
+                <span class="ai-label">ONLINE</span>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+                <div class="assistant-message">
+                    <strong>CareerPilot AI</strong>
+                    <p>
+                        Hello! I'm your AI career assistant.
+                        Ask me about internships, skills, career paths
+                        or interview preparation.
+                    </p>
+                </div>
+            </div>
+
+            <form id="chat-form" class="chat-form">
+                <input
+                    type="text"
+                    id="chat-input"
+                    placeholder="Ask CareerPilot AI anything..."
+                    maxlength="2000"
+                    required
+                >
+                <button type="submit" class="primary-button">
+                    Send ↗
+                </button>
+            </form>
+
+            <p class="chat-disclaimer">
+                AI-generated guidance may require verification.
+            </p>
+
+        </section>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p>CareerPilot AI © 2026 · Discover opportunities. Build your future.</p>
+</footer>
+
+</body>
+</html>

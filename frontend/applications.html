@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Tracker | CareerPilot AI</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+
+        <a href="index.html" class="brand">
+            <span class="brand-icon">CP</span>
+            <span>CareerPilot<span class="brand-ai"> AI</span></span>
+        </a>
+
+        <div class="global-search">
+            <span>⌕</span>
+            <input type="search" id="global-search"
+                   placeholder="Search jobs, skills or companies">
+        </div>
+
+        <nav class="top-navigation">
+            <a href="index.html" class="top-nav-link">⌂ <span>Home</span></a>
+            <a href="jobs.html" class="top-nav-link">▤ <span>Jobs</span></a>
+            <a href="saved.html" class="top-nav-link">☆ <span>Saved</span></a>
+            <a href="applications.html" class="top-nav-link">▣ <span>Applications</span></a>
+            <a href="assistant.html" class="top-nav-link">✧ <span>AI Assistant</span></a>
+            <a href="profile.html" class="top-nav-link">◉ <span>Profile</span></a>
+        </nav>
+
+        <div class="connection-indicator">
+            <span class="status-dot"></span>
+            <small id="connection-status">Checking...</small>
+        </div>
+
+    </div>
+</header>
+
+<main class="applications-page">
+
+    <section class="applications-heading">
+        <span class="eyebrow">YOUR CAREER PROGRESS</span>
+        <h1>Application tracker</h1>
+        <p>Organize your internship applications and track every opportunity.</p>
+    </section>
+
+    <section class="application-stats">
+
+        <article class="card application-stat">
+            <span>Total applications</span>
+            <h2 id="total-applications">0</h2>
+        </article>
+
+        <article class="card application-stat">
+            <span>Applied</span>
+            <h2 id="applied-count">0</h2>
+        </article>
+
+        <article class="card application-stat">
+            <span>Interviews</span>
+            <h2 id="interview-count">0</h2>
+        </article>
+
+        <article class="card application-stat">
+            <span>Offers</span>
+            <h2 id="offer-count">0</h2>
+        </article>
+
+    </section>
+
+    <section class="card application-form-card">
+
+        <h2>Add an application</h2>
+        <p>Record an internship you have applied for.</p>
+
+        <form id="application-form">
+
+            <div class="application-form-grid">
+
+                <div>
+                    <label for="application-title">Job title</label>
+                    <input id="application-title" type="text"
+                           placeholder="e.g. Software Engineer Intern"
+                           maxlength="150" required>
+                </div>
+
+                <div>
+                    <label for="application-company">Company</label>
+                    <input id="application-company" type="text"
+                           placeholder="e.g. Google"
+                           maxlength="150" required>
+                </div>
+
+                <div>
+                    <label for="application-date">Application date</label>
+                    <input id="application-date" type="date" required>
+                </div>
+
+                <div>
+                    <label for="application-status">Status</label>
+                    <select id="application-status" required>
+                        <option value="Applied">Applied</option>
+                        <option value="Interview">Interview</option>
+                        <option value="Offer">Offer</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Withdrawn">Withdrawn</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button type="submit" class="primary-button">
+                + Add application
+            </button>
+
+        </form>
+
+    </section>
+
+    <section class="applications-list-section">
+
+        <div class="applications-list-heading">
+            <div>
+                <h2>Your applications</h2>
+                <p>Manage and update your application progress.</p>
+            </div>
+
+            <select id="application-filter">
+                <option value="All">All statuses</option>
+                <option value="Applied">Applied</option>
+                <option value="Interview">Interview</option>
+                <option value="Offer">Offer</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Withdrawn">Withdrawn</option>
+            </select>
+        </div>
+
+        <div id="applications-list">
+            <div class="card saved-empty">
+                <h3>No applications recorded</h3>
+                <p>Add your first application to start tracking your progress.</p>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p>CareerPilot AI © 2026 · Discover opportunities. Build your future.</p>
+</footer>
+
+</body>
+</html>

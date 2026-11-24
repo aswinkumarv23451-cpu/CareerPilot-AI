@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Jobs | CareerPilot AI</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <a href="index.html" class="brand">
+            <span class="brand-icon">CP</span>
+            <span>CareerPilot<span class="brand-ai"> AI</span></span>
+        </a>
+
+        <div class="global-search">
+            <span>⌕</span>
+            <input type="search" id="global-search"
+                   placeholder="Search jobs, skills or companies">
+        </div>
+
+        <nav class="top-navigation">
+            <a href="index.html" class="top-nav-link">⌂ <span>Home</span></a>
+            <a href="jobs.html" class="top-nav-link">▤ <span>Jobs</span></a>
+            <a href="saved.html" class="top-nav-link">☆ <span>Saved</span></a>
+            <a href="applications.html" class="top-nav-link">▣ <span>Applications</span></a>
+            <a href="assistant.html" class="top-nav-link">✧ <span>AI Assistant</span></a>
+            <a href="profile.html" class="top-nav-link">◉ <span>Profile</span></a>
+        </nav>
+
+        <div class="connection-indicator">
+            <span class="status-dot"></span>
+            <small id="connection-status">Checking...</small>
+        </div>
+    </div>
+</header>
+
+<main class="jobs-page">
+
+    <section class="jobs-page-heading">
+        <div>
+            <span class="eyebrow">CAREER OPPORTUNITY DISCOVERY</span>
+            <h1>Find your next opportunity.</h1>
+            <p>Discover internships ranked according to your skills and interests.</p>
+        </div>
+        <div class="ai-label">✧ AI-POWERED MATCHING</div>
+    </section>
+
+    <!-- LIVE EXTERNAL JOB SEARCH -->
+    <section class="card external-jobs-section">
+
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">REAL-TIME JOB DISCOVERY</span>
+                <h2>Explore live opportunities</h2>
+                <p>Discover external job listings personalized to your profile.</p>
+            </div>
+            <span class="ai-label">LIVE JOBS</span>
+        </div>
+
+        <form id="external-job-search-form" class="external-search-form">
+
+            <div class="search-field">
+                <label for="external-job-keyword">Job title or keyword</label>
+                <input
+                    type="search"
+                    id="external-job-keyword"
+                    placeholder="e.g. Python Intern"
+                    value="Python Intern"
+                    required
+                >
+            </div>
+
+            <div class="search-field">
+                <label for="external-job-location">Preferred location</label>
+                <input
+                    type="text"
+                    id="external-job-location"
+                    placeholder="e.g. Bengaluru"
+                    value="Bengaluru"
+                >
+            </div>
+
+            <button type="submit" class="primary-button">
+                Search opportunities →
+            </button>
+
+        </form>
+
+        <div class="external-results-heading">
+            <div>
+                <h3>Matching opportunities</h3>
+                <p id="external-jobs-status" role="status" aria-live="polite">
+                    Loading live opportunities...
+                </p>
+            </div>
+            <span class="external-provider">Powered by Adzuna</span>
+        </div>
+
+        <!-- REQUIRED: JavaScript renders job cards here -->
+        <div id="external-jobs-list" class="external-jobs-list"></div>
+
+        <!-- Pagination -->
+        <div class="pagination-controls">
+            <button id="external-prev-page"
+                    class="pagination-button"
+                    type="button"
+                    disabled>
+                ← Previous
+            </button>
+
+            <span id="external-page-number">Page 1</span>
+
+            <button id="external-next-page"
+                    class="pagination-button"
+                    type="button"
+                    disabled>
+                Next →
+            </button>
+        </div>
+
+        <p class="profile-note">
+            Listings supplied by Adzuna. Verify each opportunity on its
+            original website before applying.
+        </p>
+
+    </section>
+
+    <!-- PERSONALIZED JOB SEARCH -->
+    <section class="card job-search-card">
+
+        <form id="job-search-form" class="job-search-form">
+            <div class="search-field">
+                <label for="job-keyword">Job title or skills</label>
+                <input type="search" id="job-keyword"
+                       placeholder="Python, Machine Learning, Backend...">
+            </div>
+
+            <div class="search-field">
+                <label for="job-location">Location</label>
+                <input type="text" id="job-location"
+                       placeholder="Remote, Chennai, Bengaluru...">
+            </div>
+
+            <button type="submit" class="primary-button">
+                Search Jobs
+            </button>
+        </form>
+
+        <div class="filter-row">
+            <button class="filter-chip active" data-filter="all">All</button>
+            <button class="filter-chip" data-filter="remote">Remote</button>
+            <button class="filter-chip" data-filter="ai">AI / ML</button>
+            <button class="filter-chip" data-filter="backend">Backend</button>
+            <button class="filter-chip" data-filter="data">Data Science</button>
+            <button class="filter-chip" data-filter="frontend">Frontend</button>
+        </div>
+
+    </section>
+
+    <section class="jobs-results-layout">
+
+        <div class="jobs-results-main">
+
+            <div class="feed-heading">
+                <div>
+                    <span class="eyebrow">PERSONALIZED RECOMMENDATIONS</span>
+                    <h2>Jobs matched for you</h2>
+                </div>
+
+                <button id="load-jobs" class="text-button">
+                    Refresh ↻
+                </button>
+            </div>
+
+            <div class="feed-summary">
+                <span id="feed-count">Loading opportunities...</span>
+                <span>Ranked by AI match score</span>
+            </div>
+
+            <div id="jobs-list" class="jobs-list">
+                <article class="card empty-state">
+                    <div class="empty-symbol">✧</div>
+                    <h3>Finding your opportunities</h3>
+                    <p>Your personalized recommendations will appear here.</p>
+                </article>
+            </div>
+
+        </div>
+
+        <aside class="jobs-results-sidebar">
+
+            <section class="card match-card">
+                <span class="eyebrow">YOUR BEST MATCH</span>
+                <h3>Top recommendation score</h3>
+                <div class="match-score" id="top-match">--</div>
+                <p>Based on skill matching and semantic similarity.</p>
+            </section>
+
+            <section class="card source-card">
+                <h3>Explore external job sources</h3>
+                <p>Search additional opportunities on these platforms.</p>
+
+                <a href="https://www.linkedin.com/jobs/"
+                   target="_blank" rel="noopener noreferrer">
+                    LinkedIn Jobs ↗
+                </a>
+
+                <a href="https://internshala.com/internships/"
+                   target="_blank" rel="noopener noreferrer">
+                    Internshala ↗
+                </a>
+            </section>
+
+            <section class="card insights-card">
+                <h3>Job search tips</h3>
+
+                <div class="insight-item">
+                    <span class="insight-icon">✓</span>
+                    <div>
+                        <strong>Improve your skill match</strong>
+                        <p>Compare required skills with your profile.</p>
+                    </div>
+                </div>
+
+                <div class="insight-item">
+                    <span class="insight-icon">↗</span>
+                    <div>
+                        <strong>Explore remote roles</strong>
+                        <p>Expand your internship opportunities.</p>
+                    </div>
+                </div>
+
+                <a href="assistant.html" class="outline-button full-button">
+                    Get AI Career Advice
+                </a>
+            </section>
+
+        </aside>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p>CareerPilot AI © 2026 · Discover opportunities. Build your future.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | CareerPilot AI</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <a href="index.html" class="brand">
+            <span class="brand-icon">CP</span>
+            <span>CareerPilot<span class="brand-ai"> AI</span></span>
+        </a>
+
+        <div class="global-search">
+            <span>⌕</span>
+            <input type="search" id="global-search"
+                   placeholder="Search jobs, skills or companies">
+        </div>
+
+        <nav class="top-navigation">
+                <a href="index.html" class="top-nav-link">⌂ <span>Home</span></a>
+                <a href="jobs.html" class="top-nav-link">▤ <span>Jobs</span></a>
+                <a href="saved.html" class="top-nav-link">☆ <span>Saved</span></a>
+                <a href="applications.html" class="top-nav-link">▣ <span>Applications</span></a>
+                <a href="assistant.html" class="top-nav-link">✧ <span>AI Assistant</span></a>
+                <a href="profile.html" class="top-nav-link">◉ <span>Profile</span></a>
+        </nav>
+
+        <div class="connection-indicator">
+            <span class="status-dot"></span>
+            <small id="connection-status">Checking...</small>
+        </div>
+    </div>
+</header>
+
+<main class="profile-page">
+
+    <section class="profile-heading">
+        <div class="profile-avatar" id="profile-avatar">A</div>
+        <span class="eyebrow">YOUR CAREER IDENTITY</span>
+        <h1 id="profile-name">Loading profile...</h1>
+        <p id="profile-education">Loading education...</p>
+        <p id="profile-location">Loading location...</p>
+    </section>
+
+    <form id="profile-edit-form" class="profile-edit-form">
+    <label for="edit-name">Full Name</label>
+    <input id="edit-name" name="name" required>
+
+    <label for="edit-education">Education</label>
+    <input id="edit-education" name="education">
+
+    <label for="edit-skills">Skills (comma separated)</label>
+    <textarea id="edit-skills" name="skills" rows="4"></textarea>
+
+    <label for="edit-experience">Experience</label>
+    <input id="edit-experience" name="experience">
+
+    <label for="edit-interests">Career Interests</label>
+    <textarea id="edit-interests" name="interests" rows="3"></textarea>
+
+    <label for="edit-location">Preferred Location</label>
+    <input id="edit-location" name="preferred_location">
+
+    <button type="submit" class="primary-button">
+        Save Profile
+    </button>
+    <p id="profile-save-message" role="status"></p>
+</form>
+
+    <section class="profile-details-grid">
+
+        <div class="card profile-detail-card">
+            <h3>Professional information</h3>
+
+            <div class="profile-field">
+                <span>Full name</span>
+                <strong id="detail-name">—</strong>
+            </div>
+
+            <div class="profile-field">
+                <span>Education</span>
+                <strong id="detail-education">—</strong>
+            </div>
+
+            <div class="profile-field">
+                <span>Experience level</span>
+                <strong id="detail-experience">—</strong>
+            </div>
+
+            <div class="profile-field">
+                <span>Preferred location</span>
+                <strong id="detail-location">—</strong>
+            </div>
+        </div>
+
+        <div class="card profile-detail-card">
+            <h3>Skills</h3>
+            <div id="profile-skills" class="profile-skills">
+                Loading skills...
+            </div>
+
+            <h3 class="profile-subheading">Career interests</h3>
+            <p id="profile-interests">Loading interests...</p>
+        </div>
+
+    </section>
+
+    <p class="profile-note">
+        Profile information is currently displayed from your saved candidate record.
+    </p>
+
+</main>
+
+<footer class="footer">
+    <p>CareerPilot AI © 2026 · Discover opportunities. Build your future.</p>
+</footer>
+
+</body>
+</html>

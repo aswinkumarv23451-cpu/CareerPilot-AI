@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CareerPilot AI - Your intelligent career assistant">
+    <title>CareerPilot AI | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">CP</div>
+                <div>
+                    <h2>CareerPilot<span> AI</span></h2>
+                    <small>YOUR CAREER COMPANION</small>
+                </div>
+            </div>
+
+            <nav class="navigation">
+                <p class="nav-label">WORKSPACE</p>
+
+                <a href="#dashboard" class="nav-link active">
+                    <span>▦</span> Dashboard
+                </a>
+
+                <a href="#profile" class="nav-link">
+                    <span>◉</span> My Profile
+                </a>
+
+                <a href="#jobs" class="nav-link">
+                    <span>▤</span> Job Recommendations
+                </a>
+
+                <a href="#assistant" class="nav-link">
+                    <span>✧</span> AI Career Assistant
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="status-card">
+                    <span class="status-dot"></span>
+                    Backend connection
+                    <small id="connection-status">Checking...</small>
+                </div>
+                <p>CareerPilot AI v1.0</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">CAREER WORKSPACE</p>
+                    <h1 id="dashboard">Dashboard</h1>
+                </div>
+
+                <div class="user-info">
+                    <div class="avatar">A</div>
+                    <div>
+                        <strong>Candidate</strong>
+                        <small>Career Explorer</small>
+                    </div>
+                </div>
+            </header>
+
+            <section class="welcome-section">
+                <div>
+                    <p class="eyebrow">YOUR NEXT OPPORTUNITY STARTS HERE</p>
+                    <h2>Welcome to CareerPilot AI <span>✦</span></h2>
+                    <p>Discover opportunities. Understand your strengths. Build your future.</p>
+                </div>
+                <div class="welcome-decoration">✧</div>
+            </section>
+
+            <!-- Statistics -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <p>Available Jobs</p>
+                    <h2 id="total-jobs">--</h2>
+                    <small>Opportunities in database</small>
+                </div>
+
+                <div class="stat-card">
+                    <p>Candidate Profile</p>
+                    <h2 id="candidate-status">--</h2>
+                    <small>Your profile status</small>
+                </div>
+
+                <div class="stat-card">
+                    <p>Top Match Score</p>
+                    <h2 id="top-match">--</h2>
+                    <small>Best recommendation</small>
+                </div>
+            </section>
+
+            <!-- Profile -->
+            <section class="content-section" id="profile">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">YOUR INFORMATION</p>
+                        <h2>Candidate Profile</h2>
+                    </div>
+                </div>
+
+                <div class="panel profile-panel">
+                    <div class="profile-details" id="profile-details">
+                        <p class="muted">Connect to your backend to load your profile.</p>
+                    </div>
+                    <button class="primary-button" id="load-profile">
+                        Load My Profile
+                    </button>
+                </div>
+            </section>
+
+            <!-- Recommendations -->
+            <section class="content-section" id="jobs">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">AI-POWERED DISCOVERY</p>
+                        <h2>Job Recommendations</h2>
+                    </div>
+                    <button class="secondary-button" id="load-jobs">
+                        Find Opportunities
+                    </button>
+                </div>
+
+                <div class="jobs-list" id="jobs-list">
+                    <div class="panel empty-state">
+                        <span>✧</span>
+                        <h3>Your next opportunity awaits</h3>
+                        <p>Load your recommendations to discover relevant internships.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Assistant -->
+            <section class="content-section" id="assistant">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">INTELLIGENT CAREER SUPPORT</p>
+                        <h2>AI Career Assistant</h2>
+                    </div>
+                    <span class="ai-badge">✦ GEMINI AI</span>
+                </div>
+
+                <div class="panel chat-panel">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="assistant-message">
+                            <strong>CareerPilot AI</strong>
+                            <p>Hello! I'm your career assistant. Ask me about internships, skills, or your career profile.</p>
+                        </div>
+                    </div>
+
+                    <form id="chat-form" class="chat-form">
+                        <input
+                            type="text"
+                            id="chat-input"
+                            placeholder="Ask anything about your career..."
+                            maxlength="2000"
+                            required
+                        >
+                        <button type="submit" class="primary-button">Send ↗</button>
+                    </form>
+                </div>
+            </section>
+
+            <footer>
+                <p>CareerPilot AI © 2026 · Built to power your career journey.</p>
+            </footer>
+
+        </main>
+    </div>
+
+</body>
+</html>
