@@ -18,20 +18,22 @@ app=FastAPI(
 )
 frontend_url = os.getenv(
     "FRONTEND_URL",
-    "http://127.0.0.1:5500"
-)
+    "https://careerpilot-ai-aswin.netlify.app"
+).rstrip("/")
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://127.0.0.1:5500",
         "http://localhost:5500",
+        "https://careerpilot-ai-aswin.netlify.app",
         frontend_url
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
 app.include_router(jobs_router, prefix='/jobs',tags=['Jobs'])
 app.include_router(candidates_router, prefix='/candidates',tags=['Candidates'])
 app.include_router(agent_router,prefix='/agent',tags=['AI Agent Tools'])
