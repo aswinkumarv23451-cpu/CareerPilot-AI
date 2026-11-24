@@ -1,4 +1,4 @@
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = "https://careerpilot-ai-1xey.onrender.com";
 const CANDIDATE_ID = 3;
 
 let allRecommendations = [];
