@@ -7,6 +7,9 @@ from app.api.candidates import router as candidates_router
 from app.api.agent import router as agent_router
 from app.models import conversation
 from fastapi.middleware.cors import CORSMiddleware
+from app.models import saved_job
+from app.models import application 
+from app.api.tracking import router as tracking_router
 import os
 
 Base.metadata.create_all(bind=engine)
@@ -37,6 +40,11 @@ app.add_middleware(
 app.include_router(jobs_router, prefix='/jobs',tags=['Jobs'])
 app.include_router(candidates_router, prefix='/candidates',tags=['Candidates'])
 app.include_router(agent_router,prefix='/agent',tags=['AI Agent Tools'])
+app.include_router(
+    tracking_router,
+    prefix="/tracking",
+    tags=["Job Tracking"]
+)
 
 @app.get('/')
 def home():

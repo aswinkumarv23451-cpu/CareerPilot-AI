@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, Field
 
@@ -28,23 +28,30 @@ def create_job(
 ):
     new_job = Job(**job.model_dump())
 
-    db.add(new_job)
-    db.commit()
-    db.refresh(new_job)
+    try:
+        db.add(new_job)
+        db.commit()
+        db.refresh(new_job)
 
-    return {
-        "message": "Job created successfully",
-        "job": {
-            "id": new_job.id,
-            "title": new_job.title,
-            "company": new_job.company
+        return {
+            "message": "Job created successfully",
+            "job": {
+                "id": new_job.id,
+                "title": new_job.title,
+                "company": new_job.company
+            }
         }
-    }
+    except Exception:
+        db.rollback()
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to create job"
+        )
 
 
 @router.get("/")
 def get_jobs(db: Session = Depends(get_db)):
-    return db.query(Job).all()
+    return db.query(Job).order_by(Job.id.desc()).all()
 
 
 @router.get("/recommendations/{candidate_id}")
@@ -59,21 +66,22 @@ def recommend_jobs(
     if candidate is None:
         raise HTTPException(
             status_code=404,
-            detail="Candidate not found"
+            detail="Candidate profile not found"
         )
 
     jobs = db.query(Job).all()
     recommendations = []
 
     candidate_profile = (
-        f"{candidate.education or ''} "
-        f"{candidate.skills or ''} "
-        f"{candidate.experience or ''} "
-        f"{candidate.interests or ''}"
-    )
+    f"{candidate.education or ''} "
+    f"{candidate.skills or ''} "
+    f"{candidate.experience or ''} "
+    f"{candidate.interests or ''} "
+    f"{candidate.preferred_location or ''}"
+)
 
     for job in jobs:
-        result = calculate_match(
+        match_result = calculate_match(
             candidate.skills or "",
             job.required_skills or ""
         )
@@ -82,9 +90,9 @@ def recommend_jobs(
             f"{job.title} "
             f"{job.required_skills or ''} "
             f"{job.experience or ''} "
-            f"{job.location or ''}"
+            f"{job.location or ''} "
+            f"{job.job_type or ''}"
         )
-
         semantic_result = calculate_semantic_match(
             candidate_profile,
             job_description
@@ -93,7 +101,7 @@ def recommend_jobs(
         semantic_score = semantic_result["semantic_score"]
 
         final_score = (
-            0.6 * result["match_score"]
+            0.6 * match_result["match_score"]
             + 0.4 * semantic_score
         )
 
@@ -101,13 +109,13 @@ def recommend_jobs(
             "job_id": job.id,
             "title": job.title,
             "company": job.company,
-            'location':job.location,
-            'job_type':job.job_type,
-            'experience':job.experience,
-            'required_skills':job.required_skills,
-            "match_score": result["match_score"],
-            "matched_skills": result["matched_skills"],
-            "missing_skills": result["missing_skills"],
+            "location": job.location,
+            "job_type": job.job_type,
+            "experience": job.experience,
+            "required_skills": job.required_skills,
+            "match_score": match_result["match_score"],
+            "matched_skills": match_result["matched_skills"],
+            "missing_skills": match_result["missing_skills"],
             "semantic_score": semantic_score,
             "final_score": round(final_score, 2)
         })
@@ -122,12 +130,14 @@ def recommend_jobs(
         "total_jobs": len(recommendations),
         "recommendations": recommendations
     }
+
+
 @router.get("/external/search")
 def search_external_jobs(
-    keyword: str,
-    location: str = "India",
-    page: int = 1,
-    candidate_id: int = 3,
+    keyword: str = Query(..., min_length=2, max_length=100),
+    location: str = Query(default="India", max_length=100),
+    page: int = Query(default=1, ge=1, le=50),
+    candidate_id: int = Query(..., ge=1),
     db: Session = Depends(get_db)
 ):
     candidate = db.query(Candidate).filter(
@@ -137,7 +147,7 @@ def search_external_jobs(
     if candidate is None:
         raise HTTPException(
             status_code=404,
-            detail="Candidate not found"
+            detail="Candidate profile not found"
         )
 
     try:
@@ -154,11 +164,13 @@ def search_external_jobs(
             f"{candidate.interests or ''}"
         )
 
-        for job in result["jobs"]:
+        jobs = result.get("jobs", [])
+
+        for job in jobs:
             job_description = (
-                f"{job['title']} "
-                f"{job['description']} "
-                f"{job['location']}"
+                f"{job.get('title', '')} "
+                f"{job.get('description', '')} "
+                f"{job.get('location', '')}"
             )
 
             similarity = calculate_semantic_match(
@@ -170,13 +182,14 @@ def search_external_jobs(
                 "semantic_score"
             ]
 
-        result["jobs"].sort(
+        jobs.sort(
             key=lambda job: job["profile_similarity_score"],
             reverse=True
         )
 
+        result["jobs"] = jobs
         result["candidate"] = candidate.name
-        result["ranking_method"] = "Semantic similarity"
+        result["ranking_method"] = "TF-IDF text similarity"
 
         return result
 
